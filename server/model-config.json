@@ -14,7 +14,7 @@
     ]
   },
   "CoffeeShop": {
-    "dataSource": null,
+    "dataSource": "memory",
     "public": true
   }
 }

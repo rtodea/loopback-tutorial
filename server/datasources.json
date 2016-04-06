@@ -1,1 +1,8 @@
-{}
+{
+  "memory": {
+    "name": "memory",
+    "localStorage": "memory",
+    "file": "persistence.json",
+    "connector": "memory"
+  }
+}
