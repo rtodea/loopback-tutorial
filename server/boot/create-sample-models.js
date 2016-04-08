@@ -7,7 +7,7 @@ module.exports = function (app) {
     reviewers: async.apply(createReviewerModels),
     coffeeShops: async.apply(createCoffeeShopModels)
   }, function(err, results) {
-
+    if (err) { throw err; }
     var reviewerIds = results.reviewers.map(function (reviewer) {return reviewer.id});
     var coffeeShopIds = results.coffeeShops.map(function (coffeeShop) {return coffeeShop.id});
     var reviews = createReviews(reviewerIds, coffeeShopIds);
@@ -20,20 +20,20 @@ module.exports = function (app) {
   function createReviewerModels(cb) {
     mongodb.automigrate('Reviewer', function(err) {
       if (err) {return cb(err);}
-      app.models.Reviewer.create(createReviewers());
+      app.models.Reviewer.create(createReviewers(), cb);
     });
   }
 
   function createCoffeeShopModels(cb) {
     mysql.automigrate('CoffeeShop', function(err) {
       if (err) {return cb(err);}
-      app.models.CoffeeShop.create(createCoffeeShops());
+      app.models.CoffeeShop.create(createCoffeeShops(), cb);
     });
   }
   function createReviewModels(reviews, cb) {
     mongodb.automigrate('Review', function(err) {
       if (err) {return cb(err);}
-      app.models.Review.create(reviews);
+      app.models.Review.create(reviews, cb);
     })
   }
 };
@@ -69,11 +69,11 @@ function createReviewers() {
 
 function createReviews(reviewerIds, coffeeShopsIds) {
   var commentsAndRating = [
-    {comment: 'It was very good', rating: 3},
-    {comment: 'It was awful', rating: 1},
-    {comment: 'I would go there again', rating: 5},
-    {comment: 'I would recommend it to my friends', rating: 2},
-    {comment: 'Never go there', rating: 1}];
+    {comments: 'It was very good', rating: 3},
+    {comments: 'It was awful', rating: 1},
+    {comments: 'I would go there again', rating: 5},
+    {comments: 'I would recommend it to my friends', rating: 2},
+    {comments: 'Never go there', rating: 1}];
 
   var dates = getDates(commentsAndRating.length);
 
