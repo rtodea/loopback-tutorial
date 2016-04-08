@@ -16,5 +16,13 @@
   "CoffeeShop": {
     "dataSource": "mysql",
     "public": true
+  },
+  "Review": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Reviewer": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }
