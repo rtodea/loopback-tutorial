@@ -1,3 +1,5 @@
-/**
- * Created by robert on 06/04/16.
- */
+module.exports = function(app) {
+  app.get('/ping', function(req, res) {
+    res.send('pong');
+  });
+};

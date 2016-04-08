@@ -13,5 +13,14 @@
     "name": "mysql",
     "user": "root",
     "connector": "mysql"
+  },
+  "mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "loopback_tutorial",
+    "password": "",
+    "name": "mongodb",
+    "user": "",
+    "connector": "mongodb"
   }
 }
